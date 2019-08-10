@@ -13,9 +13,13 @@ services:
       - "./apache-php/apache.conf:/etc/httpd/conf/httpd.conf"
     container_name: "apache-php"
   db:
-    image: mysql:5.7
+    # image: mysql:5.7
+    build:
+      context: ./db
     volumes: 
       - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - 3333:3306
     environment:
       - MYSQL_ROOT_PASSWORD=root
     container_name: "mysql5.7"
